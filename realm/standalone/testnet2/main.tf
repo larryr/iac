@@ -67,7 +67,7 @@ locals {
 }
 
 module "peermesh" {
-  source = "../../realmModule/peermesh"
+  source = "../../realmModule/az/peermesh"
   federation = "raufed"
   # create a peer-mesh of following list
   peerings  = [

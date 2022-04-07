@@ -25,7 +25,7 @@ resource "azurerm_resource_group" "rg" {
 
 
 module "realm0" {
-  source = "./realmModule/realmnet"
+  source = "./realmModule/az/realmnet"
 
   fedName      = var.federation
   realmID      = 0
@@ -33,7 +33,7 @@ module "realm0" {
 }
 
 module "realm1" {
-  source = "./realmModule/realmnet"
+  source = "./realmModule/az/realmnet"
 
   fedName      = var.federation
   realmID      = 1
@@ -41,7 +41,7 @@ module "realm1" {
 }
 /*
 module "realm2" {
-  source = "./realmModule/realmnet"
+  source = "./realmModule/az/realmnet"
 
   fedName      = var.federation
   realmID      = 2
@@ -50,7 +50,7 @@ module "realm2" {
 */
 
 module "k8s0" {
-  source = "./realmModule/k8s"
+  source = "./realmModule/az/k8s"
   realmName  = module.realm0.realmName
   rgName     = module.realm0.rg.name
   location   = module.realm0.rg.location
@@ -61,7 +61,7 @@ module "k8s0" {
 }
 
 module "k8s1" {
-  source = "./realmModule/k8s"
+  source = "./realmModule/az/k8s"
   realmName  = module.realm1.realmName
   rgName     = module.realm1.rg.name
   location   = module.realm1.rg.location
@@ -73,7 +73,7 @@ module "k8s1" {
 
 /*
 module "k8s2" {
-  source = "./realmModule/k8s"
+  source = "./realmModule/az/k8s"
   realmName  = module.realm2.realmName
   rgName     = module.realm2.rg.name
   location   = module.realm2.rg.location
@@ -87,7 +87,7 @@ module "k8s2" {
 */
 
 module "jumpsrv" {
-  source    = "./realmModule/jumpsrv"
+  source    = "./realmModule/az/jumpsrv"
   rgName    = module.realm0.rg.name
   location  = module.realm0.rg.location
   sshpub    = "/Users/larry/.ssh/realm_rsa.pub"
@@ -100,7 +100,7 @@ module "jumpsrv" {
 
 # setup a mesh among all realms
 module "peermesh" {
-  source = "./realmModule/peermesh"
+  source = "./realmModule/az/peermesh"
   federation = var.federation
   # create a peer-mesh of following list
   peerings = [
