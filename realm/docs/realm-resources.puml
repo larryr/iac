@@ -1,0 +1,11 @@
+@startuml
+
+rectangle Realm
+rectangle "rau-realm-net-rg" as netrg
+rectangle "rau-realm-junk-rg" as junkrg
+rectangle "rau-realm-k8s0-rg" as k8s0rg
+
+Realm -d-> netrg
+Realm -d-> junkrg
+Realm -d-> k8s0rg
+@enduml

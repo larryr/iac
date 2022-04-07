@@ -1,0 +1,15 @@
+@startuml
+strict digraph G {
+	"module.k8s1.azurerm_kubernetes_cluster.k8s"->"module.realm1.azurerm_virtual_network.vnet";
+	"module.jumpsrv.azurerm_linux_virtual_machine.jumpsrv"->"module.jumpsrv.azurerm_public_ip.pip";
+	"module.jumpsrv.azurerm_linux_virtual_machine.jumpsrv"->"module.realm0.azurerm_virtual_network.vnet";
+	"module.k8s0.azurerm_kubernetes_cluster.k8s"->"module.realm0.azurerm_virtual_network.vnet";
+	"module.jumpsrv.azurerm_linux_virtual_machine.jumpsrv" [ height=1.15, image="/Users/larry/Library/Caches/inframap/assets/azurerm/Compute/10040-icon-service-VM-Images-(Classic).png", imagepos=tc, labelloc=b, shape=plaintext ];
+	"module.jumpsrv.azurerm_public_ip.pip" [ shape=ellipse ];
+	"module.k8s0.azurerm_kubernetes_cluster.k8s" [ shape=ellipse ];
+	"module.k8s1.azurerm_kubernetes_cluster.k8s" [ shape=ellipse ];
+	"module.realm0.azurerm_virtual_network.vnet" [ height=1.15, image="/Users/larry/Library/Caches/inframap/assets/azurerm/Networking/10075-icon-service-Virtual-Networks-(Classic).png", imagepos=tc, labelloc=b, shape=plaintext ];
+	"module.realm1.azurerm_virtual_network.vnet" [ height=1.15, image="/Users/larry/Library/Caches/inframap/assets/azurerm/Networking/10075-icon-service-Virtual-Networks-(Classic).png", imagepos=tc, labelloc=b, shape=plaintext ];
+
+}
+@enduml

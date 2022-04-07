@@ -1,0 +1,80 @@
+@startuml
+
+rectangle "Federation" as fed
+rectangle "realm-0\n(eastus)\nvnet0\n(/16)" as realm0 {
+
+    rectangle "subnet-0-sysnodes\n(/16)" as realm0subnet0 {
+        rectangle "k8s-ctlnodes" as realm0sub0k8s0ctl
+    }    
+    rectangle "subnet-1-nodes\n(/16)" as realm0subnet1 {
+        rectangle "k8s-nodes" as realm0sub0k8s0nodes
+    }
+    rectangle "subnet-2-srv\n(/16)" as realm0subnet2 {
+        rectangle "srv" as realm0sub0srv
+    }    
+    rectangle "subnet-3-svc\n(/16)" as realm0subnet3 {
+        rectangle "svc" as realm0sub0svc
+    }    
+    rectangle "subnet-1-sys\n(/16)" as realm0subnet4 {
+        rectangle "sys" as realm0sub0sys
+    }
+    rectangle "subnet-2-dmz\n(/16)" as realm0subnet5 {
+        rectangle "dmz" as realm0sub0dmz
+    }    
+   
+}
+rectangle "realm-1\n(eastus)\nvnet0\n(/16)" as realm1 {
+    
+    rectangle "subnet-0-sysnodes\n(/16)" as realm1subnet0 {
+        rectangle "k8s0ctl" as realm1sub0k8sctl
+    }    
+    rectangle "subnet-1-nodes\n(/16)" as realm1subnet1 {
+        rectangle "k8s0nodes" as realm1sub0ck8snodes
+    }
+    rectangle "subnet-2-srv\n(/16)" as realm1subnet2 {
+        rectangle "srv" as realm1sub0srv
+    }    
+    rectangle "subnet-3-svc\n(/16)" as realm1subnet3 {
+        rectangle "svc" as realm1sub0svc
+    }    
+    rectangle "subnet-1-sys\n(/16)" as realm1subnet4 {
+        rectangle "sys" as realm1sub0sys
+    }
+    rectangle "subnet-2-dmz\n(/16)" as realm1subnet5 {
+        rectangle "dmz" as realm1sub0dmz
+    }    
+   
+}
+rectangle "realm-2\n(eastus)\nvnet0\n(/16)" as realm2 {
+    
+    rectangle "subnet-0-sysnodes\n(/16)" as realm2subnet0 {
+        rectangle "k8s0ctl" as realm2sub0k8sctl
+    }    
+    rectangle "subnet-1-nodes\n(/16)" as realm2subnet1 {
+        rectangle "k8s0nodes" as realm2sub0k8s
+    }
+    rectangle "subnet-2-srv\n(/16)" as realm2subnet2 {
+        rectangle "srv" as realm2sub0srv
+    }    
+    rectangle "subnet-3-svc\n(/16)" as realm2subnet3 {
+        rectangle "svc" as realm2sub0svc
+    }    
+    rectangle "subnet-1-sys\n(/16)" as realm2subnet4 {
+        rectangle "sys" as realm2sub0sys
+    }
+    rectangle "subnet-2-dmz\n(/16)" as realm2subnet5 {
+        rectangle "dmz" as realm2sub0dmz
+    }    
+   
+}
+
+circle "Network Traffic\n(vnet peering)" as router
+
+fed -d--> realm0
+fed -d--> realm1
+fed -d--> realm2
+
+realm0 <-[#blue]d-> router
+realm1 <-[#blue]d-> router
+realm2 <-[#blue]d-> router
+@enduml
